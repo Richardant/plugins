@@ -53,11 +53,13 @@ import net.runelite.api.events.GameTick;
 import net.runelite.api.events.HitsplatApplied;
 import net.runelite.api.kit.KitType;
 import net.runelite.client.config.ConfigManager;
+import net.runelite.client.events.OverlayMenuClicked;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.plugins.PluginType;
 import net.runelite.client.ui.overlay.OverlayManager;
+import net.runelite.client.ui.overlay.OverlayMenuEntry;
 import org.pf4j.Extension;
 
 @Extension
@@ -101,6 +103,16 @@ public class CombatCounter extends Plugin
 	CombatCounterConfig provideConfig(ConfigManager configManager)
 	{
 		return configManager.getConfig(CombatCounterConfig.class);
+	}
+	
+	@Subscribe
+	public void onOverlayMenuClicked(OverlayMenuClicked overlayMenuClicked)
+	{
+        	OverlayMenuEntry overlayMenuEntry = overlayMenuClicked.getEntry();
+        	if (overlayMenuEntry.getOption().equals("Clear"))
+		{
+			this.counter.clear();
+		}
 	}
 
 	private static final Map<Integer, Integer> VARIABLES = ImmutableMap.<Integer, Integer>builder()
