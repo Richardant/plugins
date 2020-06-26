@@ -30,6 +30,7 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import net.runelite.api.Client;
+import static net.runelite.api.MenuOpcode.RUNELITE_OVERLAY;
 import static net.runelite.api.MenuOpcode.RUNELITE_OVERLAY_CONFIG;
 import net.runelite.api.Player;
 import net.runelite.client.ui.overlay.Overlay;
@@ -65,6 +66,7 @@ class CombatOverlay extends Overlay
 		this.config = config;
 
 		getMenuEntries().add(new OverlayMenuEntry(RUNELITE_OVERLAY_CONFIG, OPTION_CONFIGURE, "Tick Counter"));
+		getMenuEntries().add(new OverlayMenuEntry(RUNELITE_OVERLAY, "Clear", "Tick Counter"));
 	}
 
 	@Override
